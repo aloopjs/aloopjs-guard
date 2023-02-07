@@ -1,18 +1,19 @@
 const Auth = require('./object/auth');
 
 module.exports = {
-  register({app}){
-    app.use((req, res, next) => {
-      let guards = {};
-      req.auth = function(g = null) {
-        g = g || 'default';
-        if (!guards[g]) guards[g] = new Auth();
-        return guards[g];
-      };
+  register({ app, type }) {
+    if (type === 'express')
+      app.use((req, res, next) => {
+        let guards = {};
+        req.auth = function (g = null) {
+          g = g || 'default';
+          if (!guards[g]) guards[g] = new Auth();
+          return guards[g];
+        };
 
-      next();
-    });
+        next();
+      });
   },
-  
-  boot({app, type}) {}
+
+  boot({ app, type }) { }
 };
