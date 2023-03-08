@@ -1,6 +1,6 @@
 module.exports = class Auth {
   user = null;
-  token = null;
+  cert = null;
 
   constructor() { }
 
@@ -8,9 +8,9 @@ module.exports = class Auth {
    * Login
    * @param {*} data 
    */
-  login({ user, token }) {
+  login({ user, cert }) {
     this.user = user;
-    this.token = token;
+    this.cert = cert;
   }
 
   isLogged() {
