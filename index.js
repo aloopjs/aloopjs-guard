@@ -5,7 +5,7 @@ module.exports = {
     if (type === 'express')
       app.use((req, res, next) => {
         let guards = {};
-        req.auth = function (g = null) {
+        req.guard = function (g = null) {
           g = g || 'default';
           if (!guards[g]) guards[g] = new Auth();
           return guards[g];
